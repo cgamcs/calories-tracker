@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, ChangeEvent } from "react"
 import { categories } from "../data/category"
 
 function Form() {
@@ -8,7 +8,7 @@ function Form() {
     calories: 0
   })
 
-  const handleChange = e => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
     setActivity({
       ...activity,
       [e.target.id]: e.target.value
