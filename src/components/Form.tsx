@@ -1,17 +1,21 @@
-import { useState, ChangeEvent } from "react"
+import { useState } from "react"
+import type { ChangeEvent } from "react"
+import type { Activity } from "../types"
 import { categories } from "../data/category"
 
 function Form() {
-  const [activity, setActivity] = useState({
+  const [activity, setActivity] = useState<Activity>({
     category: 1,
     name: '',
     calories: 0
   })
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
+    const isNumberField = ['category', 'calories'].includes(e.target.id)
+
     setActivity({
       ...activity,
-      [e.target.id]: e.target.value
+      [e.target.id]: isNumberField ? +e.target.value : e.target.value
     })
   }
 
