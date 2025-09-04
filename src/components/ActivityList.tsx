@@ -15,11 +15,15 @@ function ActivityList({ activities, dispatch } : ActivityListProp) {
       categories.map(cat => cat.id === category ? cat.name : '')
   , [activities])
 
+  const isEmptyActivities = useMemo(() => activities.length === 0, [activities])
+
   return (
     <>
       <h2 className="text-4xl font-bold text-slate-600 text-center">Comida y Actividades</h2>
 
-      {activities.map(activity => (
+      {isEmptyActivities ? <p className="mt-10 text-center">No hay actividades aún...</p> :
+      
+      activities.map(activity => (
         <div
           key={activity.id}
           className="px-5 py-10 bg-white mt-5 flex justify-between"
