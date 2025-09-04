@@ -1,12 +1,15 @@
+import { useMemo, type Dispatch } from "react"
+import { SquarePen } from "lucide-react"
 import { categories } from "../data/category"
 import type { Activity } from "../types"
-import { useMemo } from "react"
+import type { ActivityActions } from "../reducers/activity-reducer"
 
 type ActivityListProp = {
   activities: Activity[]
+  dispatch: Dispatch<ActivityActions>
 }
 
-function ActivityList({ activities } : ActivityListProp) {
+function ActivityList({ activities, dispatch } : ActivityListProp) {
   const categoryName = useMemo(() => 
     (category: Activity['category']) => 
       categories.map(cat => cat.id === category ? cat.name : '')
@@ -33,8 +36,12 @@ function ActivityList({ activities } : ActivityListProp) {
             </p>
           </div>
 
-          <div>
-
+          <div className="flex gap-5 items-center">
+            <button
+              onClick={() => dispatch({ type: 'set-activeId', payload: {id: activity.id} })}
+            >
+              <SquarePen className="h-8 w-8 text-gray-800" />
+            </button>
           </div>
         </div>
       ))}
