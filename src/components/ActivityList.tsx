@@ -38,6 +38,7 @@ function ActivityList({ activities, dispatch } : ActivityListProp) {
 
           <div className="flex gap-5 items-center">
             <button
+              className="cursor-pointer"
               onClick={() => dispatch({ type: 'set-activeId', payload: {id: activity.id} })}
             >
               <SquarePen className="h-8 w-8 text-gray-800" />
