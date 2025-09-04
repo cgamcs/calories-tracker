@@ -1,5 +1,5 @@
 import { useMemo, type Dispatch } from "react"
-import { SquarePen } from "lucide-react"
+import { SquarePen, Trash2 } from "lucide-react"
 import { categories } from "../data/category"
 import type { Activity } from "../types"
 import type { ActivityActions } from "../reducers/activity-reducer"
@@ -42,6 +42,13 @@ function ActivityList({ activities, dispatch } : ActivityListProp) {
               onClick={() => dispatch({ type: 'set-activeId', payload: {id: activity.id} })}
             >
               <SquarePen className="h-8 w-8 text-gray-800" />
+            </button>
+
+            <button
+              className="cursor-pointer"
+              onClick={() => dispatch({ type: 'delete-activity', payload: {id: activity.id} })}
+            >
+              <Trash2 className="h-8 w-8 text-red-600" />
             </button>
           </div>
         </div>
